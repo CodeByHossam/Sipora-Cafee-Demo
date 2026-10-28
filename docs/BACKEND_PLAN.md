@@ -1,8 +1,8 @@
-# BACKEND_PLAN.md — Express Backend Plan for Sipora Café
+# BACKEND_PLAN.md - Express Backend Plan for Sipora Cafe
 
 > Companion to `ai-base/PROJECT_PLAN.md` and `ai-base/USER_STORIES.md`.
 > Status: **PENDING / DEFERRED** (out of MVP scope; frontend-only for now).
-> Linked story: `US-14` · Linked plan task: `BE-01`.
+> Linked story: `US-14` . Linked plan task: `BE-01`.
 > Skills applied: `backend/express-api-structure`, `backend/mongodb-schema-design`,
 > `backend/jwt-auth-flow`, `backend/nodejs-production-patterns`,
 > `architecture/api-design`, `architecture/data-and-systems-design`,
@@ -20,8 +20,8 @@ and favorites. The frontend (Expo/RN) will consume this API over HTTPS.
 - Runtime: Node.js 20 LTS
 - Framework: Express 4.x
 - Database: MongoDB Atlas (Mongoose 8)
-- Auth: JWT (access 15m) + rotating refresh (30d, httpOnly cookie) — jwt-auth-flow
-- Validation: Zod (request schemas) — express-api-structure
+- Auth: JWT (access 15m) + rotating refresh (30d, httpOnly cookie) - jwt-auth-flow
+- Validation: Zod (request schemas) - express-api-structure
 - Security: helmet, cors (allow-list), express-mongo-sanitize, express-rate-limit,
   bcrypt (cost 12), compression
 - Logging: pino (request id, structured)
@@ -49,9 +49,9 @@ backend/
     utils/                 # errors, helpers
 ```
 
-Middleware order (fixed): helmet → cors → express.json → urlencoded →
-mongoSanitize → compression → requestId → requestLogger → rateLimit (/api) →
-apiRouter (/api/v1) → health → errorHandler (last, 4 params).
+Middleware order (fixed): helmet -> cors -> express.json -> urlencoded ->
+mongoSanitize -> compression -> requestId -> requestLogger -> rateLimit (/api) ->
+apiRouter (/api/v1) -> health -> errorHandler (last, 4 params).
 
 ## 4. Data model (MongoDB / Mongoose)
 
@@ -93,6 +93,64 @@ the JSON mocks.
 ### PromoCode
 - _id, code (unique), discount (Number), active, expiresAt.
 
+
+
+## 4.1 Database design (MongoDB) - models and relationships
+
+Database: MongoDB Atlas (document store). ODM: Mongoose 8.
+All collections use timestamps: true (createdAt/updatedAt) and soft-delete
+where applicable (deletedAt).
+
+### Collections and relationships
+
+```
+User (1) --< (N) Order        (ref: userId)
+User (1) --< (N) Favorite     (ref: userId, productId)
+User (1) --< (N) Session      (ref: userId)   [refresh tokens]
+User (1) --< (1) Cart         (ref: userId)   [optional server cart]
+Product (1) --< (N) OrderItem (embedded snapshot in Order)
+Product (1) --< (N) Favorite  (ref: productId)
+PromoCode (1) --< (N) Order   (ref: promoCode)
+```
+
+### Embed vs. reference decisions
+
+| Relationship | Choice | Reason |
+|---|---|---|
+| Order.items | Embed (snapshot) | Items must be frozen at purchase time (price/options). |
+| Product.customizations | Embed (bounded) | Always read with product; small, fixed set. |
+| User -> Order | Reference | Many orders per user; queried independently. |
+| User -> Favorite | Reference | Many favorites; unique (userId, productId). |
+| User -> Session | Reference (TTL) | Many sessions; auto-expire via TTL index. |
+| Order -> PromoCode | Reference (code string) | Promo can be reused; store code + discount snapshot. |
+| Cart -> User | Reference (optional) | Guest carts have no userId. |
+
+### Model overview
+
+- User: identity, role, points, soft-delete. passwordHash select:false.
+- Product: catalog item with embedded customizations + hero/discount flags.
+- Cart: per-user or guest cart; items embed productId + options + qty + unitPrice.
+- Order: immutable snapshot of a checkout (items, totals, points, remark).
+- Favorite: join table (userId, productId) with unique compound index.
+- Session: refresh-token store (hashed), TTL on expiresAt.
+- PromoCode: code, discount, active, expiresAt.
+
+### Indexes (query-driven)
+
+- User: { email: 1 } unique (partialFilterExpression deletedAt null).
+- Product: { category: 1 }, { isHero: 1 }, { isPopular: 1 },
+  text index on (name, description).
+- Order: { userId: 1, createdAt: -1 }, { status: 1 }.
+- Favorite: { userId: 1, productId: 1 } unique.
+- Session: { expiresAt: 1 } TTL.
+- PromoCode: { code: 1 } unique.
+
+### Integrity rules
+
+- Mongoose validators at schema layer (last line of defense).
+- API-level Zod validation at the edge.
+- Soft-delete users (deletedAt); never hard-delete orders.
+- Denormalized snapshots (Order.items, author) are immutable after creation.
 
 ## 5. API surface (REST, /api/v1)
 
