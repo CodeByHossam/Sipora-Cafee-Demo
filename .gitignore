@@ -52,8 +52,7 @@ example
 # AI helper / planning bundle (not part of the app)
 assets/ai-helper/
 
-# UI reference (Stitch exports) — kept locally, not shipped
-assets/stitch_sipora_caf_mobile_app_UI_REF/
+# (stitch refs now live inside ai-helper above)
 
 # generated native folders
 /ios
