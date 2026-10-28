@@ -15,7 +15,8 @@
         "backgroundColor": "#25140E",
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.hossamfathi.siporacafeedemo"
     },
     "web": {
       "output": "server"
