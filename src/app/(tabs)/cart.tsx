@@ -214,13 +214,20 @@ setTimeout(() => {
             <Text style={styles.totalLabel}>Total</Text>
             <Text style={styles.totalValue}>${grandTotal.toFixed(2)}</Text>
           </View>
-<View style={styles.breakdownRow}>
+          <View style={styles.breakdownRow}>
             <Text style={styles.breakdownLabel}>Points earned</Text>
             <Text style={styles.breakdownValue}>+{earnedPoints} pts</Text>
+          </View>
+          <View style={styles.breakdownRow}>
+            <Text style={styles.breakdownLabel}>Points balance after</Text>
+            <Text style={styles.breakdownValue}>{points + earnedPoints - (redeemFree && canRedeem ? REDEEM_THRESHOLD : 0)} pts</Text>
+          </View>
+        </View>
+
         {isGuest ? (
           <View style={styles.guestPointsCard}>
             <View style={styles.guestPointsHeader}>
-              <Ionicons name="gift-outline" size={22} color={colors.onPrimary} />
+              <Ionicons name="gift-outline" size={22} color={colors.primaryContainer} />
               <View style={{ flex: 1 }}>
                 <Text style={styles.guestPointsTitle}>Earn {earnedPoints} points on this order</Text>
                 <Text style={styles.guestPointsSub}>Sign up now and these points are yours — 50 points = 1 free drink.</Text>
@@ -232,12 +239,6 @@ setTimeout(() => {
           </View>
         ) : null}
 
-          </View>
-          <View style={styles.breakdownRow}>
-            <Text style={styles.breakdownLabel}>Points balance after</Text>
-            <Text style={styles.breakdownValue}>{points + earnedPoints - (redeemFree && canRedeem ? REDEEM_THRESHOLD : 0)} pts</Text>
-          </View>
-        </View>
 
         <View style={styles.remarkCard}>
           <Text style={styles.remarkLabel}>Order remark</Text>
@@ -337,12 +338,12 @@ const styles = StyleSheet.create({
   checkoutAnchor: { position: 'absolute', left: spacing.marginMobile, right: spacing.marginMobile, bottom: spacing.md },
   checkoutBtn: { height: 52, borderRadius: radii.full, backgroundColor: colors.primaryContainer, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: spacing.sm, ...shadows.level2 },
   checkoutBtnSuccess: { backgroundColor: colors.secondary },
-guestPointsCard: { backgroundColor: colors.primaryContainer, borderRadius: radii.xl, padding: spacing.md, marginBottom: spacing.md, ...shadows.level1 },
+guestPointsCard: { backgroundColor: colors.surfaceContainerLow, borderRadius: radii.xl, padding: spacing.md, marginBottom: spacing.md, borderWidth: 1, borderColor: colors.outlineVariant, ...shadows.level1 },
   guestPointsHeader: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, marginBottom: spacing.sm },
-  guestPointsTitle: { fontSize: typography.sizes.bodyMd, fontWeight: '700', color: colors.onPrimary, fontFamily: typography.bodyBold },
-  guestPointsSub: { fontSize: typography.sizes.bodySm, color: colors.onPrimary, opacity: 0.9, marginTop: 2, fontFamily: typography.body },
-  guestPointsBtn: { height: 40, borderRadius: radii.full, backgroundColor: colors.surfaceContainerLowest, alignItems: 'center', justifyContent: 'center' },
-  guestPointsBtnText: { fontSize: typography.sizes.labelMd, fontWeight: '600', color: colors.primary, fontFamily: typography.bodySemiBold },
+  guestPointsTitle: { fontSize: typography.sizes.bodyMd, fontWeight: '700', color: colors.primary, fontFamily: typography.bodyBold },
+  guestPointsSub: { fontSize: typography.sizes.bodySm, color: colors.onSurfaceVariant, marginTop: 2, fontFamily: typography.body },
+  guestPointsBtn: { height: 40, borderRadius: radii.full, backgroundColor: colors.primaryContainer, alignItems: 'center', justifyContent: 'center' },
+  guestPointsBtnText: { fontSize: typography.sizes.labelMd, fontWeight: '600', color: colors.onPrimary, fontFamily: typography.bodySemiBold },
   checkoutText: { color: colors.onPrimary, fontSize: typography.sizes.labelLg, fontWeight: '600' , fontFamily: typography.bodySemiBold, lineHeight: 20 },
 });
 
