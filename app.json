@@ -1,19 +1,20 @@
 {
   "expo": {
-    "name": "native3",
-    "slug": "native3",
+    "name": "Sipora-Cafee-Demo",
+    "slug": "Sipora-Cafee-Demo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "native3",
+    "scheme": "sipora-cafee-demo",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
     },
     "android": {
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.sipora.cafee.demo"
     },
     "web": {
-      "output": "server"
+      "output": "static"
     },
     "plugins": [
       "expo-router",
@@ -31,6 +32,16 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "d2a7b1c9-cb91-4783-bcff-918d843567e6"
+      }
     }
   }
 }
