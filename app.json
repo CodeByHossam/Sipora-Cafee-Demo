@@ -16,7 +16,11 @@
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.hossamfathi.siporacafeedemo"
+      "package": "com.hossamfathi.siporacafeedemo",
+      "navigationBar": {
+        "backgroundColor": "#FFFFFF",
+        "barStyle": "dark-content"
+      }
     },
     "web": {
       "output": "static"

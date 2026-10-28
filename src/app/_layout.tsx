@@ -2,6 +2,7 @@ import { Stack, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { Platform, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useEffect } from 'react';
 import {
   Fraunces_400Regular,
@@ -55,8 +56,9 @@ export default function RootLayout() {
 
   return (
     <ErrorBoundary>
-      <WebFocusReset />
-      <UserProvider>
+      <SafeAreaProvider>
+        <WebFocusReset />
+        <UserProvider>
       <CartProvider>
         <FavoritesProvider>
           <PointsProvider>
@@ -76,6 +78,7 @@ export default function RootLayout() {
         </FavoritesProvider>
       </CartProvider>
     </UserProvider>
+      </SafeAreaProvider>
     </ErrorBoundary>
   );
 }
