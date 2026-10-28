@@ -1,14 +1,16 @@
 import { Stack, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
-import { Platform, View } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { useEffect } from 'react';
 import {
   Fraunces_400Regular,
   Fraunces_600SemiBold,
   Fraunces_700Bold,
 } from '@expo-google-fonts/fraunces';
+import {
+  PlayfairDisplay_700Bold,
+} from '@expo-google-fonts/playfair-display';
 import {
   Inter_400Regular,
   Inter_500Medium,
@@ -40,6 +42,7 @@ export default function RootLayout() {
     Fraunces_400Regular,
     Fraunces_600SemiBold,
     Fraunces_700Bold,
+    PlayfairDisplay_700Bold,
     Inter_400Regular,
     Inter_500Medium,
     Inter_600SemiBold,

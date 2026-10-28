@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: spacing.marginMobile, paddingTop: spacing.md },
   greeting: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.md },
   greetingRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  greetingTitle: { fontSize: typography.sizes.headlineXlMobile, fontWeight: '600', color: colors.primary, fontFamily: typography.headlineSemiBold, lineHeight: typography.lineHeights.headlineXlMobile },
+  greetingTitle: { fontSize: typography.sizes.headlineXlMobile, color: colors.primary, fontFamily: 'PlayfairDisplay_700Bold', lineHeight: typography.lineHeights.headlineXlMobile },
   sparkle: { fontSize: 18 },
   greetingSub: { fontSize: typography.sizes.bodyMd, color: colors.secondary, marginTop: 2 , fontFamily: typography.body, lineHeight: 20 },
   avatar: {

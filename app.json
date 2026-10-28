@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.hossamfathi.SiporaCafeeDemo"
+      "package": "com.hossamfathi.siporacafeedemo"
     },
     "web": {
       "output": "server"
@@ -26,11 +26,12 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#25140E",
           "imageWidth": 76
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
