@@ -19,7 +19,7 @@
       "package": "com.hossamfathi.siporacafeedemo"
     },
     "web": {
-      "output": "server"
+      "output": "static"
     },
     "plugins": [
       "expo-router",
