@@ -1,0 +1,48 @@
+{
+  "products": [
+    {
+      "id": "spiced-caramel-cloud-latte",
+      "name": "Spiced Caramel Cloud Latte",
+      "description": "Crafted with creamy oat milk and velvety burnt caramel, topped with a cloud of sweet cream.",
+      "basePrice": 5.5,
+      "image": "spiced-latee.png",
+      "category": "Espresso",
+      "isHero": false,
+      "discountPercentage": 0,
+      "isPopular": true
+    },
+    {
+      "id": "artisanal-caramel-latte",
+      "name": "Artisanal Caramel Latte",
+      "description": "Espresso with steamed milk and a house-made caramel drizzle, finished with delicate heart latte art.",
+      "basePrice": 5.5,
+      "image": "caramel-latte.png",
+      "category": "Espresso",
+      "isHero": true,
+      "discountPercentage": 20,
+      "isPopular": true
+    },
+    {
+      "id": "iced-vanilla-cold-brew",
+      "name": "Iced Vanilla Cold Brew",
+      "description": "Slow-steeped cold brew topped with a cloud of vanilla sweet cream.",
+      "basePrice": 5.25,
+      "image": "iced-vanilla-cold-brew.png",
+      "category": "Cold Brew",
+      "isHero": false,
+      "discountPercentage": 10,
+      "isPopular": true
+    },
+    {
+      "id": "toasted-almond-croissant",
+      "name": "Toasted Almond Croissant",
+      "description": "Buttery croissant filled with almond cream and toasted slivers.",
+      "basePrice": 4.25,
+      "image": "almond-croissant.png",
+      "category": "Pastries",
+      "isHero": false,
+      "discountPercentage": 0,
+      "isPopular": true
+    }
+  ]
+}

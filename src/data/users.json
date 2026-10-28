@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": "u_admin",
+      "name": "Admin User",
+      "email": "admin@sipora.com",
+      "password": "admin123",
+      "role": "admin",
+      "points": 0,
+      "image": "admin.png"
+    },
+    {
+      "id": "u_user1",
+      "name": "Elena Rossi",
+      "email": "user@sipora.com",
+      "password": "user123",
+      "role": "user",
+      "points": 25,
+      "image": "user1.png"
+    },
+    {
+      "id": "u_guest",
+      "name": "Guest",
+      "email": "guest@sipora.com",
+      "password": "guest123",
+      "role": "guest",
+      "points": 0,
+      "image": "user1.png"
+    }
+  ]
+}
