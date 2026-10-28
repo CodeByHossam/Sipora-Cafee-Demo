@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.hossamfathi.siporacafeedemo"
+      "package": "com.hossamfathi.SiporaCafeeDemo"
     },
     "web": {
       "output": "server"

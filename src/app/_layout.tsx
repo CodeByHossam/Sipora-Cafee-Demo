@@ -1,7 +1,8 @@
 import { Stack, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import {
   Fraunces_400Regular,
@@ -57,13 +58,17 @@ export default function RootLayout() {
         <FavoritesProvider>
           <PointsProvider>
             <StatusBar style="dark" />
-            <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.surface } }}>
-              <Stack.Screen name="(tabs)" />
-              <Stack.Screen name="product/[id]" />
-              <Stack.Screen name="favorites" />
-              <Stack.Screen name="signup" />
-              <Stack.Screen name="login" />
-            </Stack>
+            <View style={styles.outerContainer}>
+              <View style={styles.innerContainer}>
+                <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.surface } }}>
+                  <Stack.Screen name="(tabs)" />
+                  <Stack.Screen name="product/[id]" />
+                  <Stack.Screen name="favorites" />
+                  <Stack.Screen name="signup" />
+                  <Stack.Screen name="login" />
+                </Stack>
+              </View>
+            </View>
           </PointsProvider>
         </FavoritesProvider>
       </CartProvider>
@@ -71,3 +76,22 @@ export default function RootLayout() {
     </ErrorBoundary>
   );
 }
+
+const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1,
+    backgroundColor: '#1a1a1a',
+    alignItems: 'center',
+  },
+  innerContainer: {
+    flex: 1,
+    width: '100%',
+    maxWidth: 480,
+    backgroundColor: colors.surface,
+    ...Platform.select({
+      web: {
+        boxShadow: '0px 0px 20px rgba(0,0,0,0.3)',
+      },
+    }),
+  },
+});
