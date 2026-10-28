@@ -4,17 +4,21 @@
     "slug": "Sipora-Cafee-Demo",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
     "scheme": "sipora-cafee-demo",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/icon.png"
     },
     "android": {
-      "predictiveBackGestureEnabled": false,
-      "package": "com.sipora.cafee.demo"
+      "adaptiveIcon": {
+        "backgroundColor": "#25140E",
+        "foregroundImage": "./assets/images/adaptive-icon.png"
+      },
+      "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "static"
+      "output": "server"
     },
     "plugins": [
       "expo-router",
@@ -25,9 +29,7 @@
           "imageWidth": 76
         }
       ],
-      "expo-secure-store",
-      "expo-web-browser",
-      "expo-font"
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
@@ -42,7 +44,6 @@
       "eas": {
         "projectId": "d63fe5bd-0e0a-48ab-aad2-df480d8ed88d"
       }
-    },
-    "owner": "hossamfathi"
+    }
   }
 }
