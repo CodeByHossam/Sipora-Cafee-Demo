@@ -16,11 +16,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.hossamfathi.siporacafeedemo",
-      "navigationBar": {
-        "backgroundColor": "#FFFFFF",
-        "barStyle": "dark-content"
-      }
+      "package": "com.hossamfathi.siporacafeedemo"
     },
     "web": {
       "output": "static"
@@ -35,7 +31,17 @@
         }
       ],
       "expo-secure-store",
-      "expo-font"
+      "expo-font",
+      "expo-system-ui",
+      [
+        "expo-navigation-bar",
+        {
+          "enforceContrast": true,
+          "hidden": false,
+          "style": "dark"
+        }
+      ],
+      "expo-image"
     ],
     "experiments": {
       "typedRoutes": true,
